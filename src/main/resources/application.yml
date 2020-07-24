@@ -1,0 +1,53 @@
+#端口号
+server:
+  port: 8086
+  servlet:
+      context-path: /api/order
+#Spring的配置
+spring:
+  datasource:
+    #数据源
+    # 使用druid数据源
+    #type: org.apache.tomcat.jdbc.pool.DataSource
+    #驱动
+    driver-class-name: com.mysql.jdbc.Driver
+    #数据库连接
+    url: jdbc:mysql://localhost:3306/mydb?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2B8
+    #用户名
+    username: root
+    #密码
+    password: 123456
+    #模板引擎配置
+    #thymeleaf:
+    #配置返回值前缀以及后缀
+      #prefix: classpath:/templates/
+      #suffix: .html
+      #mode: HTML5
+
+#配置mybatis
+mybatis-plus:
+  configuration:
+    #是否启用缓存
+    cache-enabled: false
+    #是否开启驼峰功能
+    map-underscore-to-camel-case: false
+    #是否将sql打印到控制面板(该配置会将sql语句和查询的结果都打印到控制台)
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    #日志打印
+    #log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
+  global-config:
+    db-config:
+      #主键自增
+      id-type: AUTO
+      #字段策略 IGNORED:"忽略判断", NOT_NULL:"非 NULL 判断", NOT_EMPTY:"非空判断"
+      field-strategy: NOT_NULL
+      # 逻辑已删除值(默认为 1)
+      logic-delete-value: 1
+      # 逻辑未删除值(默认为 0)
+      logic-not-delete-value: 0
+  #实体类包
+  type-aliases-package: com.example.orderserver.entity.*
+  #配置mapping路径
+  mapper-locations: classpath:/mappers/*/*Mapper.xml
+
+

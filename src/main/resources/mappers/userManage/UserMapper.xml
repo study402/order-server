@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.orderserver.dao.userManage.UserDao">
+    <!-- 用户列表查询 (分页版) -->
+    <select id="findPage" resultType="com.example.orderserver.entity.userManage.UserEntity">
+        SELECT u.id, u.loginName, u.password, u.phone
+        FROM tb_user u
+        <where>
+        <if test="param.loginName != null and param.loginName != ''">
+            AND u.loginName LIKE '%${param.loginName}%'
+        </if>
+        </where>
+    </select>
+
+    <!-- 根据ID查询用户列表 -->
+    <select id="findUsersById" resultType="com.example.orderserver.entity.userManage.UserEntity">
+        SELECT u.*
+        FROM
+        tb_user u
+        WHERE
+        u.id = #{id}
+    </select>
+
+</mapper>
